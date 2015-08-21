@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Donut Shop</title>
+  </head>
+  <body>
+    <table border=1>
+      <thead>
+      <th>Donut Shop</th>
+      <th>Donuts Baked per Hour</th>
+      <th>Donuts Baked per Day</th>
+      </thead>
+
+      <script>
+
+        function DonutShop(numHoursOpen, minCustPerHour, maxCustPerHour, avgDonutsPerCust, location) {
+          this.numHoursOpen = numHoursOpen;
+          this.minCustPerHour = minCustPerHour;
+          this.maxCustPerHour = maxCustPerHour;
+          this.avgDonutsPerCust = avgDonutsPerCust;
+          this.storeLocation = location;
+
+          this.getDonutsPerHour = function () {
+        	  var custPerHour =  Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour;
+          	return Math.ceil(this.avgDonutsPerCust * custPerHour);
+          };
+
+          this.getDonutsBakedPerDay = function ()  {
+          	return Math.ceil(this.getDonutsPerHour() * this.numHoursOpen);
+          };
+
+        	this.report = function() {
+            return "<tr><td>" + this.storeLocation +
+          	"</td><td>" + this.getDonutsPerHour() +
+          	"</td><td>" + this.getDonutsBakedPerDay() +
+          	"</td><tr>";
+        	};
+        }
+
+        var downtown = new DonutShop(8,8,43,4.50, "Downtown");
+        var capitolHill = new DonutShop (8, 4, 37, 2,"Capitol Hill");
+        var southLakeUnion = new DonutShop (8, 9, 23, 6.33, "South Lake Union");
+        var wedgewood = new DonutShop (8, 2, 28, 1.25 ,"Wedgewood");
+        var ballard = new DonutShop (8, 8, 58, 3.75 ,"Ballard");
+
+        document.write(downtown.report());
+        document.write(capitolHill.report());
+        document.write(southLakeUnion.report());
+        document.write(wedgewood.report());
+        document.write(ballard.report());
+
+      </script>
+    </table>
+  </body>
+</html>
